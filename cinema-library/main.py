@@ -47,6 +47,6 @@ def serve():
 
 
 if __name__ == "__main__":
-    with open("data/films.json") as file:
+    with open("data/films.json", "r", encoding="utf-8") as file:
         FILMS = json.load(file)
     serve()
