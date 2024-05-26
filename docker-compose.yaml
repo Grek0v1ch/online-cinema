@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  cinema-app:
+    build:
+      context: .
+      dockerfile: cinema-app/Dockerfile
+    environment:
+      RECOMMENDATIONS_HOST: cinema-library
+      USERS_HOST: users
+    image: cinema-app
+    networks:
+      - microservices
+    ports:
+      - 5000:5000
+
+  cinema-library:
+    build:
+      context: .
+      dockerfile: cinema-library/Dockerfile
+    image: cinema-library
+    networks:
+      - microservices
+
+  users:
+    build:
+      context: .
+      dockerfile: users/Dockerfile
+    image: users
+    networks:
+      - microservices
+
+networks:
+  microservices:
