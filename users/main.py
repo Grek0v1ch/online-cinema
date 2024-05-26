@@ -43,7 +43,7 @@ class UsersService(users_pb2_grpc.UsersServicer):
         return RatingResponse(rating=rating/cnt)
     
     def UserMarksUpdate(self, request, context):
-        with open('data/users.json', 'w') as file:
+        with open('data/users.json', 'w', encoding='utf-8') as file:
             for user in USERS:
                 if user['username'] == request.username:
                     for mark in user['marks']:
@@ -66,6 +66,6 @@ def serve():
 
 
 if __name__ == "__main__":
-    with open("data/users.json") as file:
+    with open("data/users.json", 'r', encoding='utf-8') as file:
         USERS = json.load(file)
     serve()
