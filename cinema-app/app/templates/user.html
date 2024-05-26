@@ -2,4 +2,7 @@
 
 {% block content %}
     <h1>Страница пользователя {{ user[0] }}</h1>
+    {% for mark in marks %}
+        <a href="{{ url_for('render_film', id=mark[0]) }}">{{ mark[2] }}</a> - {{ mark[1] }}<br>
+    {% endfor %}
 {% endblock%}

@@ -1,0 +1,42 @@
+[
+  {
+    "username": "1234",
+    "password": "1234",
+    "marks": [
+      {
+        "film_id": 1,
+        "mark": 3
+      },
+      {
+        "film_id": 2,
+        "mark": 5
+      },
+      {
+        "film_id": 4,
+        "mark": 5
+      },
+      {
+        "film_id": 5,
+        "mark": 5
+      }
+    ]
+  },
+  {
+    "username": "admin",
+    "password": "admin",
+    "marks": [
+      {
+        "film_id": 1,
+        "mark": 5
+      },
+      {
+        "film_id": 5,
+        "mark": 4
+      },
+      {
+        "film_id": 6,
+        "mark": 5
+      }
+    ]
+  }
+]

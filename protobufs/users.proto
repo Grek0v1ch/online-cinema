@@ -11,10 +11,40 @@ enum Status {
     INCORRECT_PASSWORD = 2;
 }
 
-message ExistRequest {
+message ExistResponse {
     Status status = 1;
 }
 
+message Mark {
+    int32 film_id = 1;
+    int32 mark = 2;
+}
+
+message MarksResponse {
+    repeated Mark marks = 1;
+}
+
+message RatingRequest {
+    int32 film_id = 1;
+}
+
+message RatingResponse {
+    float rating = 1;
+}
+
+message MarksUpdateRequest {
+    string username = 1;
+    int32 mark = 2;
+    int32 film_id = 3;
+}
+
+message Nill {
+
+}
+
 service Users {
-    rpc UserExist (UserRequest) returns (ExistRequest);
+    rpc UserExist (UserRequest) returns (ExistResponse);
+    rpc UserMarks (UserRequest) returns (MarksResponse);
+    rpc FilmRating (RatingRequest) returns (RatingResponse);
+    rpc UserMarksUpdate (MarksUpdateRequest) returns (Nill);
 }

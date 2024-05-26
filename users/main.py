@@ -1,32 +1,61 @@
 from concurrent import futures
-import random
 import json
 
 import grpc
 
 from users_pb2 import (
-    UserRequest,
     Status,
-    ExistRequest,
+    ExistResponse,
+    MarksResponse,
+    RatingResponse,
+    Nill
 )
 
 import users_pb2_grpc
 
 
-USERS = {
-    '1234': '1234', 
-    'admin': 'admin'
-}
-
-
 class UsersService(users_pb2_grpc.UsersServicer):
 
     def UserExist(self, request, context):
-        if not (request.username in USERS):
-            return ExistRequest(status=Status.NOT_EXIST)
-        if USERS[request.username] != request.password:
-            return ExistRequest(status=Status.INCORRECT_PASSWORD)
-        return ExistRequest(status=Status.EXIST)
+        for user in USERS:
+            if user['username'] == request.username:
+                if user['password'] == request.password:
+                    return ExistResponse(status=Status.EXIST)
+                return ExistResponse(status=Status.INCORRECT_PASSWORD)
+        return ExistResponse(status=Status.NOT_EXIST)
+    
+    def UserMarks(self, request, context):
+        for user in USERS:
+            if user['username'] == request.username:
+                return MarksResponse(marks=user['marks'])
+        return MarksResponse(marks=[])
+
+    def FilmRating(self, request, context):
+        rating = 0.0
+        cnt = 0
+        for user in USERS:
+            for mark in user['marks']:
+                if mark['film_id'] == request.film_id:
+                    cnt += 1
+                    rating += mark['mark']
+        if cnt == 0:
+            return RatingResponse(rating=-1.0)
+        return RatingResponse(rating=rating/cnt)
+    
+    def UserMarksUpdate(self, request, context):
+        with open('data/users.json', 'w') as file:
+            for user in USERS:
+                if user['username'] == request.username:
+                    for mark in user['marks']:
+                        if mark['film_id'] == request.film_id:
+                            mark['mark'] = request.mark
+                            json.dump(USERS, file, indent=2)
+                            return Nill()
+                    user['marks'].append({'film_id': request.film_id, 'mark': request.mark})
+                    json.dump(USERS, file, indent=2)
+                    return Nill()
+            json.dump(USERS, file, indent=2)
+            return Nill()
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
@@ -37,4 +66,6 @@ def serve():
 
 
 if __name__ == "__main__":
+    with open("data/users.json") as file:
+        USERS = json.load(file)
     serve()

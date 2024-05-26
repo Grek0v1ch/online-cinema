@@ -14,19 +14,31 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0busers.proto\"1\n\x0bUserRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"\'\n\x0c\x45xistRequest\x12\x17\n\x06status\x18\x01 \x01(\x0e\x32\x07.Status*:\n\x06Status\x12\r\n\tNOT_EXIST\x10\x00\x12\t\n\x05\x45XIST\x10\x01\x12\x16\n\x12INCORRECT_PASSWORD\x10\x02\x32\x31\n\x05Users\x12(\n\tUserExist\x12\x0c.UserRequest\x1a\r.ExistRequestb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0busers.proto\"1\n\x0bUserRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x10\n\x08password\x18\x02 \x01(\t\"(\n\rExistResponse\x12\x17\n\x06status\x18\x01 \x01(\x0e\x32\x07.Status\"%\n\x04Mark\x12\x0f\n\x07\x66ilm_id\x18\x01 \x01(\x05\x12\x0c\n\x04mark\x18\x02 \x01(\x05\"%\n\rMarksResponse\x12\x14\n\x05marks\x18\x01 \x03(\x0b\x32\x05.Mark\" \n\rRatingRequest\x12\x0f\n\x07\x66ilm_id\x18\x01 \x01(\x05\" \n\x0eRatingResponse\x12\x0e\n\x06rating\x18\x01 \x01(\x02\"E\n\x12MarksUpdateRequest\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x0c\n\x04mark\x18\x02 \x01(\x05\x12\x0f\n\x07\x66ilm_id\x18\x03 \x01(\x05\"\x06\n\x04Nill*:\n\x06Status\x12\r\n\tNOT_EXIST\x10\x00\x12\t\n\x05\x45XIST\x10\x01\x12\x16\n\x12INCORRECT_PASSWORD\x10\x02\x32\xbb\x01\n\x05Users\x12)\n\tUserExist\x12\x0c.UserRequest\x1a\x0e.ExistResponse\x12)\n\tUserMarks\x12\x0c.UserRequest\x1a\x0e.MarksResponse\x12-\n\nFilmRating\x12\x0e.RatingRequest\x1a\x0f.RatingResponse\x12-\n\x0fUserMarksUpdate\x12\x13.MarksUpdateRequest\x1a\x05.Nillb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'users_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_STATUS']._serialized_start=107
-  _globals['_STATUS']._serialized_end=165
+  _globals['_STATUS']._serialized_start=333
+  _globals['_STATUS']._serialized_end=391
   _globals['_USERREQUEST']._serialized_start=15
   _globals['_USERREQUEST']._serialized_end=64
-  _globals['_EXISTREQUEST']._serialized_start=66
-  _globals['_EXISTREQUEST']._serialized_end=105
-  _globals['_USERS']._serialized_start=167
-  _globals['_USERS']._serialized_end=216
+  _globals['_EXISTRESPONSE']._serialized_start=66
+  _globals['_EXISTRESPONSE']._serialized_end=106
+  _globals['_MARK']._serialized_start=108
+  _globals['_MARK']._serialized_end=145
+  _globals['_MARKSRESPONSE']._serialized_start=147
+  _globals['_MARKSRESPONSE']._serialized_end=184
+  _globals['_RATINGREQUEST']._serialized_start=186
+  _globals['_RATINGREQUEST']._serialized_end=218
+  _globals['_RATINGRESPONSE']._serialized_start=220
+  _globals['_RATINGRESPONSE']._serialized_end=252
+  _globals['_MARKSUPDATEREQUEST']._serialized_start=254
+  _globals['_MARKSUPDATEREQUEST']._serialized_end=323
+  _globals['_NILL']._serialized_start=325
+  _globals['_NILL']._serialized_end=331
+  _globals['_USERS']._serialized_start=394
+  _globals['_USERS']._serialized_end=581
 # @@protoc_insertion_point(module_scope)
