@@ -12,7 +12,7 @@ services:
     networks:
       - microservices
     ports:
-      - 5000:5000
+      - 5001:5001
 
   cinema-library:
     build:
